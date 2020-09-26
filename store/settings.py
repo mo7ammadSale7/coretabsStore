@@ -26,7 +26,7 @@ SECRET_KEY = 'km*k_@w@wjt*cc8bs-gr4_!p*-jyuqf-@jovkm0@6fkrsnqaq@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.herokuapp.com',]
 
 
 # Application definition
@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ALLOWED_HOSTS = ['.herokuapp.com',]
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
