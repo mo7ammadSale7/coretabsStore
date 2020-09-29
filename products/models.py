@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=255)
+    brand = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True, null=True)
-    price = models.IntegerField(blank=True, null=True)
+    price = models.PositiveBigIntegerField()
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
