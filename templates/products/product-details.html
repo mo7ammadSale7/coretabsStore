@@ -8,8 +8,10 @@
 </head>
 
 <body>
+    <div>{{ product.brand }}</div>
     <h3>{{ product.title }}</h3>
     <p>{{ product.description }}</p>
+    <div>{{ product.price }}</div>
 
     <a href="{% url 'products_list' %}">back to products page.</a>
 </body>

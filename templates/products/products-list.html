@@ -12,9 +12,15 @@
     <ul>
         {% for product in products %}
         <li>
+            <h3>{{ product.brand }}</h3>
+        </li>
+        <li>
             <a href="{% url 'product_details' product.pk %}">
                 <h3>{{ product.title }}</h3>
             </a>
+        </li>
+        <li>
+            <h3>{{ product.price }}</h3>
         </li>
         {% empty %}
         <li>
