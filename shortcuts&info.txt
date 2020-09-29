@@ -2,6 +2,9 @@ commands:
 	python -m venv venv			to make virtualenv
 	call venv\scripts\activate		to activate venv in win
 	source venv/bin/activate		to activate venv in mac & linux
+	pip install django			to install django
+	pip install -U flake8		to install flake8
+	pip install -U autopep8		to install flake8
 	django-admin startproject name .	to create a new project + (.) in same dir
 	python manage.py startapp name		to create a new ap
 	python manage.py runserver		to launch server
@@ -10,11 +13,8 @@ commands:
 plugins in vscode:
 
 	python
-	flake8
-	autopep8
 	add this line ("editor.formatOnSave": true) in .vscode\settings.json
 						to format your file on save	
-
 
 shortcuts:
 

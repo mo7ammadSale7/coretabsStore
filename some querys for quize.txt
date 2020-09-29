@@ -1,0 +1,25 @@
+from products.models import Product
+
+p1 = Product.objects.create(title="Sony Xperia XZ2", description="The Xperia XZ2 is packed with the latest Sony technologies to deliver an entertainment experience that touches your senses in a whole new way – whether you're lost in a HDR movie or capturing hidden details with the new advanced Motion Eye™ camera.", price="300")
+
+p2 = Product.objects.create(title="Google Pixel 2", description="The Google Pixel 2 is packed with the latest google technologies to deliver an entertainment experience that touches your senses in a whole new way – whether you're lost in a HDR movie or capturing hidden details with the new advanced Motion Eye™ camera.", price="300")
+
+p3 = Product.objects.create(title="iphone xs", description="The iphone xs is packed with the latest apple technologies to deliver an entertainment experience that touches your senses in a whole new way – whether you're lost in a HDR movie or capturing hidden details with the new advanced Motion Eye™ camera.", price="300")
+
+p4 = Product.objects.create(title="iphone xs", description="The iphone xs is packed with the latest apple technologies to deliver an entertainment experience that touches your senses in a whole new way – whether you're lost in a HDR movie or capturing hidden details with the new advanced Motion Eye™ camera.", price="9")
+
+Product.objects.all()
+
+Product.objects.get(id=0)
+
+Product.objects.filter(price\_\_gte=10)
+
+Product.objects.exclude(price\_\_gte=10).update(description="Will be deleted")
+
+Product.objects.filter(description="Will be deleted").delete()
+
+Product.objects.exclude(price\_\_gte=90)
+
+import datetime
+
+Product.objects.filter(created_at\_\_date=datetime.date(2020, 9, 29))

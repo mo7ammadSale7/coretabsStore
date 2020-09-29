@@ -1,0 +1,37 @@
+    from products.models import Product         to import my models
+    p1 = Product(tiltle="", description="")         to create object from model
+    p1.save()           to save it
+
+
+    p1 = Product.objects.create(title="", description="")           to create object and save it
+
+    p1.description          access to description in p1
+
+    Product.objects.all().update(price=0)           to update all objects and your can use it with filter and exclude
+
+    p1.delete()         to delete an object and your can use it with filter and exclude and all
+
+
+query sets:
+    all = Product.objects.all()         to return all objects in model as a list
+    get = Product.objects.get(id=1)         to return an object his id is 1 (to return just one object if has more than one it will return be an error, if it doesn't exist it will be return error again)
+          Product.objects.get(title__icontains='x')         to return an object his title contain "x" (case not sensitive)
+          (field__lookup-type=value)
+          Product.objects.get(title__exact='google pixel 2')            to return exact value and this is defualt if you don't write any field__lookup (case sensitive)
+          Product.objects.get(title__exact='google pixel 2')            to return a not exact value (case not sensitive)
+          Product.objects.get(title__contains='x')          to return an object his title contain "x" (case sensitive)
+    filter = Product.objects.filter(description__contains="The")            to return return an object his description contain "The" (case sensitive) (to return one object or more)
+    exclude = Product.objects.exclude(description__contains="The")            to return return an object his description doesn't contain "The" (case sensitive) (to return one object or more mirror filter)
+
+
+
+
+
+
+
+field__lookup:
+
+    from django.db.models.sql.constants import QUERY_TERMS
+    QUERY_TERMS
+    {'search', 'icontains', 'iexact', 'contains', 'range', 'istartswith', 'iregex', 'day', 'second', 'exact', 'year', 'week_day', 'minute', 'gte', 'iendswith', 'regex', 'startswith', 'in', 'gt', 'lt', 'lte', 'isnull', 'month', 'hour', 'endswith'}
+    

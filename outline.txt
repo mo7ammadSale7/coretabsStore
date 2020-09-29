@@ -1,0 +1,36 @@
+user:
+    - id
+    - userName
+    - password
+    - firstName
+    - lastName
+    - email
+    - cart_id
+
+product:
+    - id
+    - title
+    - description
+    - price
+    - image
+    - barnd
+
+cart:
+    - id
+    - user_id
+    - totalPrice
+
+ProductCart:
+    - id
+    - cart_id
+    - product_id
+
+order:
+    - id
+    - address
+    - user_id
+
+productOrder:
+    - id
+    - order_id
+    - ProductCart_id

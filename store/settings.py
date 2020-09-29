@@ -125,4 +125,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static_files')
 
 
-ALLOWED_HOSTS = ['.herokuapp.com',]
+# ALLOWED_HOSTS = ['.herokuapp.com',]
