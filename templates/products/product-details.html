@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <a href="{% url 'product_edit' product.pk %}">edit</a>
+    <a href="{% url 'product_delete' product.pk %}">delete</a>
     <div>{{ product.brand }}</div>
     <h3>{{ product.title }}</h3>
     <p>{{ product.description }}</p>

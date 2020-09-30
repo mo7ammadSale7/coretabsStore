@@ -9,6 +9,7 @@
 
 <body>
     <h1>products:</h1>
+    <a href="{% url 'product_add' %}">add product</a>
     <ul>
         {% for product in products %}
         <li>
