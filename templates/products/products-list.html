@@ -13,15 +13,12 @@
     <ul>
         {% for product in products %}
         <li>
+            <img src="{{ product.image.url }}">
             <h3>{{ product.brand }}</h3>
-        </li>
-        <li>
             <a href="{% url 'product_details' product.pk %}">
                 <h3>{{ product.title }}</h3>
             </a>
-        </li>
-        <li>
-            <h3>{{ product.price }}</h3>
+            <h4>{{ product.price }}</h4>
         </li>
         {% empty %}
         <li>
