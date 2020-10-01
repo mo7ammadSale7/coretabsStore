@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head_title %}Reset Password{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Added Successfully</title>
-</head>
-
-<body>
-    <h1>Product added Successfully!</h1>
-
-    <a href="{% url 'products_list' %}">continue to homepage</a>
-</body>
-
-</html>
+{% block content %}
+<section>
+    <div>
+        <h1 class="section-headline">Product added Successfully!</h1>
+        <a class="back" href="{% url 'products_list' %}">Continue to homepage</a>
+    </div>
+</section>
+{% endblock %}
