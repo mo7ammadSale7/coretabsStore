@@ -21,6 +21,15 @@
                 <a href="{% url 'products_list' %}">STORE</a>
             </h1>
 
+
+            {% if user.is_authenticated %}
+            <p>Hi, {{ user.username }}</p>
+            <a href=" {% url 'logout' %} ">Log Out</a>
+            {% else %}
+            <a href=" {% url 'login' %} ">Login</a>
+            <a href=" {% url 'signup' %} ">Sign up</a>
+            {% endif %}
+
             <div id="controls">
                 <div id="cart">
                 </div>
