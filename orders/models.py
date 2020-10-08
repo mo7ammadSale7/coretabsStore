@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
+from products.models import Product
 
 User = get_user_model()
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User, related_name='profile', on_delete=models.CASCADE)
+class Order(models.Model):
     address = models.TextField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Product)
 
     def __str__(self):
         return str(self.user)
