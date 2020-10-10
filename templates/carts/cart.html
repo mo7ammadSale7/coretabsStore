@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% block head_title %}cart{% endblock %}
+
+{% block content %}
 <ul>
     {% for product in products %}
     <li>
@@ -13,3 +17,4 @@
 
 <h3>Total price: {{ total_price | floatformat:2 }}</h3>
 <a href="{% url 'clear_cart' %}">clear cart</a>
+{% endblock %}
