@@ -17,4 +17,6 @@
 
 <h3>Total price: {{ total_price | floatformat:2 }}</h3>
 <a href="{% url 'clear_cart' %}">clear cart</a>
+<a href="{% url 'add_to_order' %}">order</a>
+
 {% endblock %}

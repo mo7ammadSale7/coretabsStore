@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class Order(models.Model):
-    address = models.TextField()
+    address = models.CharField(max_length=254)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(Product)
 
