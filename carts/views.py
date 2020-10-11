@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
+
 
 from products.models import Product
 from .models import Cart
@@ -34,8 +34,7 @@ def clear_cart(request):
 def cart(request):
     user = request.user
     products = user.cart.items.all()
-    total_price = user.cart.items.aggregate(
-        Sum('price'))['price__sum'] or 0.00
+    total_price = user.cart.total_price()
     context = {
         'products': products,
         'total_price': total_price
