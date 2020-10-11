@@ -11,30 +11,31 @@ from .utils import send_email
 
 @login_required
 def add_to_order(request):
-    cart = Cart.objects.get(user=request.user)
-    items = cart.items.all()
-    profile = Profile.objects.get(user=request.user)
+    user = request.user
+    items = user.cart.items.all()
     if items.exists():
-        order = Order.objects.create(
-            user=request.user, address=profile.address,)
-        order.items.set(items)
-        total_price = order.total_price()
-        orderitems = order.items.all()
         if request.method == 'POST':
-            form = OrderForm(request.POST, instance=order)
+            form = OrderForm(request.POST)
             if form.is_valid():
-                form.save()
-                cart.items.clear()
-                send_email(order.user)
-                return render(request, 'orders/order-successful.html')
+                mform = form.save(commit=False)
+                mform.user = user
+                mform.save()
+            mform.items.set(items)
+            total_price = mform.total_price()
+            orderitems = mform.items.all()
+            user.cart.items.clear()
+            send_email(user)
+            context = {
+                'total_price': total_price,
+                'orderitems': orderitems,
+            }
+            return render(request, 'orders/order-successful.html', context)
         else:
-            form = OrderForm(instance=order)
+            form = OrderForm()
     else:
         return redirect('products_list')
 
     context = {
         "form": form,
-        "orderitems": orderitems,
-        "total_price": total_price,
     }
     return render(request, 'orders/order-add.html', context)

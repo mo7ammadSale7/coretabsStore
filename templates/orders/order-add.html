@@ -7,15 +7,6 @@
     <p class="section-description">
         Please fill in your address to order your products.
     </p>
-    <p class="section-description">
-        Your ordered price: ${{ total_price | floatformat:2  }}
-    </p>
-    <p class="section-description">
-        Your ordered products:
-        {% for product in orderitems %}
-            <span>{{ product.title|capfirst }}</span>,
-        {% endfor %}
-    </p>
     <div class="form">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
