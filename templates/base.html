@@ -1,3 +1,4 @@
+  
 {% load static %}
 
 <!DOCTYPE html>
@@ -18,21 +19,27 @@
         <!--HEADER-->
         <header>
             <h1 id="logo">
-                <a href="{% url 'products_list' %}">STORE</a>
+                <a href="{% url 'home' %}">STORE</a>
             </h1>
-
-
-            {% if user.is_authenticated %}
-            <p>Hi, {{ user.username }}</p>
-            <a href=" {% url 'logout' %} ">Log Out</a>
-            {% else %}
-            <a href=" {% url 'login' %} ">Login</a>
-            <a href=" {% url 'signup' %} ">Sign up</a>
-            {% endif %}
 
             <div id="controls">
                 <div id="cart">
+                    <!--1-->
+                    <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+
+                    {% if request.user.cart.items.all|length > 0 %}
+                    <span id="cart-counter">
+                        {{ request.user.cart.items.all|length }}
+                    </span>
+                    {% endif %}
                 </div>
+
+                {% if user.is_authenticated %}
+                <p>Hi, {{ user.username }}</p>
+                <input type="button" id="logout" onclick="location.href='{% url 'logout' %}'" value="Log out" />
+                {% else  %}
+                <input type="button" id="login" onclick="location.href='{% url 'login' %}'" value="Log in" />
+                {% endif %}
             </div>
         </header>
 
@@ -52,8 +59,8 @@
         <!--2-->
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,22 +1,55 @@
 {% extends "base.html" %}
-{% block head_title %}cart{% endblock %}
+{% block head_title %}All Products{% endblock %}
 
 {% block content %}
-<ul>
-    {% for product in products %}
-    <li>
-        <h3>{{ product.title|capfirst }}</h3>
-        <a href="{% url 'remove_from_cart' product_id=product.id %}">remove from cart</a>
-    </li>
-    {% empty %}
-    <li>
-        no products yet.
-    </li>
-    {% endfor %}
-</ul>
+<section class="clearfix">
 
-<h3>Total price: ${{ total_price | floatformat:2 }}</h3>
-<a href="{% url 'clear_cart' %}">clear cart</a>
-<a href="{% url 'add_to_order' %}">order</a>
+    <h2 class="section-headline">Cart</h2>
+    <p class="section-description">
+        Please check your products before checkout.
+    </p>
 
+    <div class="cart">
+        <ul>
+            {% for product in products %}
+            <li class="item">
+                <div class="cart-product-img">
+                    <img src="{{ product.image.url }}" alt="" />
+                </div>
+                <div>
+                    <h3>{{ product.title | capfirst }}</h3>
+                </div>
+                <div>
+                    <p>${{ product.price | floatformat:2 }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'remove_from_cart' product_id=product.id %}" class="remove">x</a>
+                </div>
+            </li>
+            {% empty %}
+            <li>
+                <p>No products yet.</p>
+            </li>
+            {% endfor %}
+
+            {% if products.count > 0 %}
+            <li class="item" id="cart-summary">
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <h3>Total</h3>
+                </div>
+                <div>
+                    <p>${{ total_price }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'add_to_order' %}" class="checkout">Checkout</a>
+                    <a href="{% url 'clear_cart' %}" class="clear">Clear Cart</a>
+                </div>
+            </li>
+            {% endif%}
+        </ul>
+    </div>
+</section>
 {% endblock %}
