@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 # from django.core.mail import send_mail
 from .forms import OrderForm
 from .utils import send_email
+from orders.utils import send_order_email
 
 
 @login_required
@@ -19,7 +20,7 @@ def add_to_order(request):
             total_price = order.total_price()
             orderitems = order.items.all()
             user.cart.items.clear()
-            send_email(user)
+            send_order_email(user, order)
             context = {
                 'total_price': total_price,
                 'orderitems': orderitems,

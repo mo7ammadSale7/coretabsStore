@@ -1,10 +1,12 @@
-from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 
-def send_email(user):
-    send_mail(
-        'order success',
-        'your order is success ' + str(user),
-        'from@example.com',
-        ['to@example.com'],
-    )
+def send_order_email(user, order):
+
+    subject = 'Your Order Details'
+    message = render_to_string('orders/order_email.html', {
+        'user': user,
+        'order': order,
+    })
+
+    user.email_user(subject, message)
