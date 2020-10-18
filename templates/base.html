@@ -1,66 +1,298 @@
-  
-{% load static %}
+  {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'normalize.css' %}" />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Questrial|Domine" rel="stylesheet" />
-    <title>{% block head_title %}STORE{% endblock %}</title>
-</head>
+  <head>
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="https://fonts.googleapis.com/css?family=Questrial|Domine" rel="stylesheet" />
 
-<body>
-    <div class="wrapper">
-        <!--HEADER-->
-        <header>
-            <h1 id="logo">
-                <a href="{% url 'home' %}">STORE</a>
-            </h1>
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+      <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'css/progressbar_barfiller.css' %}">
+      <link rel="stylesheet" href="{% static 'css/lightslider.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/price_rangs.css' %}">
+      <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+      <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/animated-headline.css' %}">
+      <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+      <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+      <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-            <div id="controls">
-                <div id="cart">
-                    <!--1-->
-                    <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+      <title>{% block head_title %}STORE{% endblock %}</title>
+  </head>
 
-                    {% if request.user.cart.items.all|length > 0 %}
-                    <span id="cart-counter">
-                        {{ request.user.cart.items.all|length }}
-                    </span>
-                    {% endif %}
-                </div>
+  <body class="full-wrapper">
+      <header>
+          <!-- Header Start -->
+          <div class="header-area">
+              <div class="main-header header-sticky">
+                  <div class="container-fluid">
+                      <div class="row menu-wrapper align-items-center justify-content-between">
+                          <div class="header-left d-flex align-items-center">
+                              <!-- Logo -->
+                              <div class="logo">
+                                  <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                              </div>
+                              <!-- Logo-2 -->
+                              <div class="logo2">
+                                  <a href="{% url 'home' %}"><img src="{% static 'img/logo2.png' %}" alt=""></a>
+                              </div>
+                              <!-- Main-menu -->
+                              <div class="main-menu  d-none d-lg-block">
+                                  <nav>
+                                      <ul id="navigation">
+                                          <li><a href="{% url 'home' %}">Product</a></li>
+                                          <li><a href="#">Page</a>
+                                          </li>
+                                          <li><a href="#">Blog</a>
+                                          </li>
+                                          <li><a href="#">Contact</a></li>
+                                      </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                          <div class="header-right1 d-flex align-items-center">
+                              <div class="search">
+                                  <ul class="d-flex align-items-center">
+                                      {% if user.is_authenticated %}
+                                      <li>
+                                          <p class="m-0">Hi, {{ user.username }}</p>
+                                      </li>
+                                      <li>
+                                          <a href="{% url 'logout' %}" class="btn hero-btn py-5 px-4 mx-5">Logout</a>
+                                      </li>
+                                      {% else %}
+                                      <li>
+                                          <a href="{% url 'login' %}" class="btn hero-btn py-5 px-4 mx-5">Login</a>
+                                      </li>
+                                      {% endif %}
+                                      <li>
+                                          <div class="card-stor">
+                                              <a href="{% url 'cart' %}">
+                                                  <img src="{% static 'img/card.svg' %}" alt="">
+                                              </a>
+                                              {% if request.user.cart.items.all|length > 0 %}
+                                              <span>
+                                                  {{ request.user.cart.items.all|length }}
+                                              </span>
+                                              {% endif %}
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <!-- Mobile Menu -->
+                          <div class="col-12">
+                              <div class="mobile_menu d-block d-lg-none"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Header End -->
+      </header>
+      <!-- header end -->
 
-                {% if user.is_authenticated %}
-                <p>Hi, {{ user.username }}</p>
-                <input type="button" id="logout" onclick="location.href='{% url 'logout' %}'" value="Log out" />
-                {% else  %}
-                <input type="button" id="login" onclick="location.href='{% url 'login' %}'" value="Log in" />
-                {% endif %}
-            </div>
-        </header>
+      <!--MAIN-->
+      <main>
+          {% block content %}{% endblock %}
+          <!--? Services Area Start -->
+          <div class="categories-area section-padding40 gray-bg">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                              <div class="cat-icon">
+                                  <img src="{% static 'img/services1.svg' %}" alt="">
+                              </div>
+                              <div class="cat-cap">
+                                  <h5>Fast & Free Delivery</h5>
+                                  <p>Free delivery on all orders</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                              <div class="cat-icon">
+                                  <img src="{% static 'img/services2.svg' %}" alt="">
+                              </div>
+                              <div class="cat-cap">
+                                  <h5>Secure Payment</h5>
+                                  <p>Free delivery on all orders</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                              <div class="cat-icon">
+                                  <img src="{% static 'img/services3.svg' %}" alt="">
+                              </div>
+                              <div class="cat-cap">
+                                  <h5>Money Back Guarantee</h5>
+                                  <p>Free delivery on all orders</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                              <div class="cat-icon">
+                                  <img src="{% static 'img/services4.svg' %}" alt="">
+                              </div>
+                              <div class="cat-cap">
+                                  <h5>Online Support</h5>
+                                  <p>Free delivery on all orders</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
 
-        <!--MAIN-->
-        <main>
-            {% block content %}{% endblock %}
-        </main>
-    </div>
+      <footer>
+          <div class="footer-wrapper">
+              <!-- Footer Start-->
+              <div class="footer-area footer-padding">
+                  <div class="container ">
+                      <div class="row justify-content-between">
+                          <div class="col-xl-4 col-lg-3 col-md-8 col-sm-8">
+                              <div class="single-footer-caption mb-50">
+                                  <div class="single-footer-caption mb-30">
+                                      <!-- logo -->
+                                      <div class="footer-logo mb-35">
+                                          <a href="{url 'home'}"><img src="{% static 'img/logo2_footer.png' %}"
+                                                  alt=""></a>
+                                      </div>
+                                      <div class="footer-tittle">
+                                          <div class="footer-pera">
+                                              <p>Suspendisse varius enim in eros elementum tristique. Duis cursus, mi
+                                                  quis viverra ornare, eros dolor interdum nulla.</p>
+                                          </div>
+                                      </div>
+                                      <!-- social -->
+                                      <div class="footer-social">
+                                          <a href="#"><i class="fab fa-twitter"></i></a>
+                                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                              <div class="single-footer-caption mb-50">
+                                  <div class="footer-tittle">
+                                      <h4>Quick links</h4>
+                                      <ul>
+                                          <li><a href="#">Image Licensin</a></li>
+                                          <li><a href="#">Style Guide</a></li>
+                                          <li><a href="#">Privacy Policy</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                              <div class="single-footer-caption mb-50">
+                                  <div class="footer-tittle">
+                                      <h4>Shop Category</h4>
+                                      <ul>
+                                          <li><a href="#">Image Licensin</a></li>
+                                          <li><a href="#">Style Guide</a></li>
+                                          <li><a href="#">Privacy Policy</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                              <div class="single-footer-caption mb-50">
+                                  <div class="footer-tittle">
+                                      <h4>Pertners</h4>
+                                      <ul>
+                                          <li><a href="#">Image Licensin</a></li>
+                                          <li><a href="#">Style Guide</a></li>
+                                          <li><a href="#">Privacy Policy</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- footer-bottom area -->
+              <div class="footer-bottom-area">
+                  <div class="container">
+                      <div class="footer-border">
+                          <div class="row d-flex align-items-center">
+                              <div class="col-xl-12 ">
+                                  <div class="footer-copy-right text-center">
+                                      <p>
+                                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                          Copyright &copy;<script>
+                                              document.write(new Date().getFullYear());
+                                          </script> All rights reserved | This template is made with <i
+                                              class="fa fa-heart" aria-hidden="true"></i> by <a
+                                              href="https://colorlib.com" target="_blank">Colorlib</a>
+                                          | <a href="#" target="_blank">Coretabs</a>
+                                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Footer End-->
+          </div>
+      </footer>
+      <!-- Scroll Up -->
+      <div id="back-top">
+          <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+      </div>
 
-    <!--FOOTER-->
-    <footer>
-        <a href="#" id="scroll-up">
-            <i class="fas fa-chevron-up"></i>
-        </a>
-        <!--2-->
-        <p>&copy; 2020 STORE All Rights Reserved.</p>
-        <!--2-->
-    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-        crossorigin="anonymous"></script>
-</body>
 
-</html>
+      <!-- JS here -->
+      <!-- Jquery, Popper, Bootstrap -->
+      <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+      <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+      <!-- Slick-slider , Owl-Carousel ,slick-nav -->
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'js/slick.min.js' %}"></script>
+      <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+
+      <!-- One Page, Animated-HeadLin, Date Picker , price, light-slider -->
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <script src="{% static 'js/animated.headline.js' %}"></script>
+      <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+      <script src="{% static 'js/gijgo.min.js' %}"></script>
+      <script src="{% static 'js/lightslider.min.js' %}"></script>
+      <script src="{% static 'js/price_rangs.js' %}"></script>
+
+      <!-- Nice-select, sticky,Progress -->
+      <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+      <script src="{% static 'js/jquery.sticky.js' %}"></script>
+      <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+
+      <!-- counter , waypoint,Hover Direction -->
+      <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+      <script src="{% static 'js/waypoints.min.js' %}"></script>
+      <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+      <script src="{% static 'js/hover-direction-snake.min.js' %}"></script>
+
+      <!-- Jquery Plugins, main Jquery -->
+      <script src="{% static 'js/plugins.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+  </body>
+
+  </html>

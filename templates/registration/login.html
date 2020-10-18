@@ -1,24 +1,47 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% block head_title %}Login{% endblock %}
 
 {% block content %}
-<section class="form-section">
-    <h2 class="section-headline">Login</h2>
-    <p class="section-description">
-        Please fill in your credentials to login to your account.
-    </p>
-    <div class="form">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p>
-                <button type="submit">Login</button>
-            </p>
-        </form>
-        <p>
-            <a href="{% url 'signup' %}">Don't have an account?</a>
-            <a href="{% url 'password_reset' %}">Reset password?</a>
-        </p>
+<main class="login-bg1">
+    <!-- login Area Start -->
+    <div class="login-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="login-form">
+                        <!-- Login Heading -->
+                        <div class="login-heading">
+                            <span>Login</span>
+                            <p>Enter Login details to get access</p>
+                        </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    <label>Username or Email Address</label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Password</label>
+                                    {{ form.password }}
+                                </div>
+                                <div class="single-input-fields login-check">
+                                    <a href="{% url 'password_reset' %}" class="f-right">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <!-- form Footer -->
+                            <div class="login-footer">
+                                <p>Don’t have an account? <a href="{% url 'signup' %}">Sign Up</a> here</p>
+                                <button type="submit" class="submit-btn3">Login</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+    <!-- login Area End -->
+</main>
 {% endblock %}

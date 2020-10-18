@@ -1,20 +1,38 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% block head_title %}Order{% endblock %}
 
 {% block content %}
-<section class="form-section">
-    <h2 class="section-headline">Make Order</h2>
-    <p class="section-description">
-        Please fill in your address to make an order.
-    </p>
-    <div class="form">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p>
-                <button type="submit">Order</button>
-            </p>
-        </form>
+<main class="login-bg1">
+    <!-- login Area Start -->
+    <div class="login-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="login-form">
+                        <!-- Login Heading -->
+                        <div class="login-heading">
+                            <span>Make Order</span>
+                            <p>Please fill in your address to make an order.</p>
+                        </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    {{ form }}
+                                </div>
+                            </div>
+                            <!-- form Footer -->
+                            <div class="login-footer">
+                                <button type="submit" class="submit-btn3">Order</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+    <!-- login Area End -->
+</main>
 {% endblock %}

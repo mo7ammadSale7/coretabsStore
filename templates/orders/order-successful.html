@@ -1,23 +1,31 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% block head_title %}Order successfully{% endblock %}
 
 {% block content %}
-<section>
-    <div>
-        <h1 class="section-headline">Thank You!</h1>
-    <p class="section-description">
-        Please check your email further information about your order.
-    </p>
-    <p class="section-description">
-        Your ordered price: ${{ total_price | floatformat:2  }}
-    </p>
-    <p class="section-description">
-        Your ordered products:
-        {% for product in orderitems %}
-            <span>{{ product.title|capfirst }}</span>,
-        {% endfor %}
-    </p>
-        <a class="back" href="{% url 'products_list' %}">Continue to homepage</a>
+<main class="login-bg1">
+    <!-- login Area Start -->
+    <div class="login-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="login-form">
+                        <!-- Login Heading -->
+                        <div class="login-heading">
+                            <span>Thank You!</span>
+                            <p>Please check your email further information about your order.</p>
+                            <p>Your ordered price: ${{ total_price | floatformat:2  }}</p>
+                            <p>Your ordered products:
+                                {% for product in orderitems %}
+                                <span>{{ product.title|capfirst }}</span>
+                                {% endfor %}
+                            </p>
+                            <a class="btn" href="{% url 'home' %}">Continue to homepage</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</main>
 {% endblock %}

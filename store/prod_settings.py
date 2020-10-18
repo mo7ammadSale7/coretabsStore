@@ -11,7 +11,7 @@ if debug_option == 'true':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'mo7ammad.pythonanywhere.com']
+# ALLOWED_HOSTS = ['.herokuapp.com', 'mo7ammad.pythonanywhere.com']
 
 
 DATABASES = {

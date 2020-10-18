@@ -1,11 +1,24 @@
-{% extends "base.html" %}
-{% block head_title %}Reset Password{% endblock %}
+{% extends "base_form.html" %}
+{% block head_title %}product added sucessful{% endblock %}
 
 {% block content %}
-<section>
-    <div>
-        <h1 class="section-headline">Product added Successfully!</h1>
-        <a class="back" href="{% url 'home' %}">Continue to homepage</a>
+<main class="login-bg1">
+    <!-- login Area Start -->
+    <div class="login-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="login-form">
+                        <!-- Login Heading -->
+                        <div class="login-heading">
+                            <span>Product added Successfully</span>
+                            <a class="btn" href="{% url 'home' %}">Continue to homepage</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</main>
 {% endblock %}

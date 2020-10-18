@@ -1,21 +1,64 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% block head_title %}Sign Up{% endblock %}
 
 {% block content %}
-<section class="form-section">
-    <h2 class="section-headline">Sign Up</h2>
-    <p class="section-description">
-        Please fill in this form to create an account.
-    </p>
-    <div class="form">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {{ aform.as_p }}
-            <p>
-                <button type="submit">Signup</button>
-            </p>
-        </form>
+
+<main class="login-bg">
+    <!-- login Area Start -->
+    <div class="register-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="register-form text-center">
+                        <!-- Login Heading -->
+                        <div class="register-heading">
+                            <span>Sign Up</span>
+                            <p>Create your account to get full access</p>
+                        </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    <label>Username</label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Password</label>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Password Confirmation</label>
+                                    {{ form.password2 }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>First Name</label>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Last Name</label>
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Email</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Address</label>
+                                    {{ aform.address }}
+                                </div>
+                            </div>
+                            <!-- form Footer -->
+                            <div class="register-footer">
+                                <p> Already have an account? <a href="{% url 'login' %}"> Login</a> here</p>
+                                <button type="submit" class="submit-btn3">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+    <!-- login Area End -->
+</main>
 {% endblock %}

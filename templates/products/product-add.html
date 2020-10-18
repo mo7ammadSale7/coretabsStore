@@ -1,20 +1,37 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 {% block head_title %}Add/Edit Product{% endblock %}
 
 {% block content %}
-<section class="form-section">
-    <h2 class="section-headline">Add/Edit Product</h2>
-    <p class="section-description">
-        Please fill in your email to reset your password.
-    </p>
-    <div class="form">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p>
-                <button type="submit">Save</button>
-            </p>
-        </form>
+
+<main class="login-bg">
+    <!-- login Area Start -->
+    <div class="register-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="register-form text-center">
+                        <!-- Login Heading -->
+                        <div class="register-heading">
+                            <span>Add/Edit Product</span>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    {{ form }}
+                                </div>
+                            </div>
+                            <!-- form Footer -->
+                            <div class="register-footer">
+                                <button type="submit" class="submit-btn3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+    <!-- login Area End -->
+</main>
 {% endblock %}
